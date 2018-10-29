@@ -1,24 +1,22 @@
-#ifndef _GAME_BOARD_
-#define _GAME_BOARD_
+#ifndef _PLAYER_
+#define _PLAYER_
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "GameGrid.hpp"
+#include "OutilsMaths.hpp"
 #include "Camera.hpp"
 
-#define NB_TILE 1
-#define NB_ARBRE 500
-
+using namespace OutilsMaths;
 using namespace std;
 using namespace sf;
 
-class GameBoard {
+class Player {
 private:
-    Texture _textures[NB_TILE];
-    Sprite _sprites[NB_TILE];
-    GameGrid _gameGrid;
-    
+    Vector2f _position;
+    Texture _textures[4];
+    Sprite _sprites[4];
+    int _currentImage;
 public:
     /************************************************/
     /*                   CONSTANTES                 */
@@ -27,8 +25,8 @@ public:
     /************************************************/
     /*          CONSTRUCTEUR/DESTRUCTEUR            */
     /************************************************/
-    GameBoard();
-    virtual ~GameBoard();
+    Player();
+    virtual ~Player();
     /************************************************/
     /*                   OPERATORS                  */
     /************************************************/
@@ -40,10 +38,9 @@ public:
     /************************************************/
     /*                   METHODS                    */
     /************************************************/
-    bool isInScreen(const Vector2f&) const;
     void loadTexturesSprites();
     void update(Camera&);
-    void draw(RenderWindow*, const Camera&);
+    void draw(RenderWindow*);
 };
 
 #endif

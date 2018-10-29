@@ -4,6 +4,8 @@
 #include <time.h>
 
 #include "GameBoard.hpp"
+#include "Camera.hpp"
+#include "Player.hpp"
 
 using namespace std;
 using namespace sf;
@@ -14,7 +16,9 @@ int main(int argc, char * argv[])
     RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
     window.setFramerateLimit(60);
 
+    Camera camera = Camera();
     GameBoard myMap = GameBoard();
+    Player player = Player();
 
     Clock clock;
     Font police;
@@ -41,11 +45,13 @@ int main(int argc, char * argv[])
         int fps = (int)(1.f / clock.getElapsedTime().asSeconds());
         clock.restart();
         text_fps.setString("FPS :" + to_string(fps));
-        myMap.update();
+        myMap.update(camera);
+        player.update(camera);
         
         window.clear();
         window.draw(text_fps);
-        myMap.draw(&window);
+        myMap.draw(&window, camera);
+        player.draw(&window);
         window.display();
     }
 

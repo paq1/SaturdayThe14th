@@ -15,7 +15,6 @@ using namespace OutilsMaths;
 GameBoard::GameBoard() {
     loadTexturesSprites();
     _gameGrid = GameGrid();
-    _camera = Camera();
 }
 GameBoard::~GameBoard() {}
 /************************************************/
@@ -43,38 +42,38 @@ void GameBoard::loadTexturesSprites() {
     for(int i = 0; i < NB_TILE; i++)
         _sprites[i].setTexture(_textures[i]);
 }
-void GameBoard::update() {
+void GameBoard::update(Camera& camera) {
     int speed = 2;
     if(Keyboard::isKeyPressed(Keyboard::Up)){
-        _camera.setPosition(  
-            _camera.getPosition() + Vector2f(0, -speed)
+        camera.setPosition(  
+            camera.getPosition() + Vector2f(0, -speed)
         );
     }
     if(Keyboard::isKeyPressed(Keyboard::Right)){
-        _camera.setPosition(  
-            _camera.getPosition() + Vector2f(speed, 0)
+        camera.setPosition(  
+            camera.getPosition() + Vector2f(speed, 0)
         );
     }
     if(Keyboard::isKeyPressed(Keyboard::Down)){
-        _camera.setPosition(  
-            _camera.getPosition() + Vector2f(0, speed)
+        camera.setPosition(  
+            camera.getPosition() + Vector2f(0, speed)
         );
     }
     if(Keyboard::isKeyPressed(Keyboard::Left)){
-        _camera.setPosition(  
-            _camera.getPosition() + Vector2f(-speed, 0)
+        camera.setPosition(  
+            camera.getPosition() + Vector2f(-speed, 0)
         );
     }
 }
-void GameBoard::draw(RenderWindow * p_window) {
+void GameBoard::draw(RenderWindow * p_window, const Camera& camera) {
     for(int l = 0; l < _gameGrid.getNbLine(); l++){
         for(int c = 0; c < _gameGrid.getNbColumn(); c++){
             Vector2f pos = Vector2f(c * (50/2), l * (50/2));
             Vector2f pos_affiche = to3Diso(
-                pos + _camera.getPosition()
+                pos + camera.getPosition()
             );
 
-            if(isInScreen(pos_affiche)){ // en attendant le test
+            if(isInScreen(pos_affiche)){
                 _sprites[_gameGrid.getId(l,c)].setPosition(pos_affiche);
                 p_window->draw(_sprites[_gameGrid.getId(l,c)]);
             }
