@@ -50,30 +50,62 @@ void Player::loadTexturesSprites() {
     }
 }
 void Player::deplacement(Camera& camera) {
+    Vector2f ancienne_position = _position;
+    Vector2f ancienne_position_camera = 
+    camera.getPosition();
     int speed = 4;
     if(Keyboard::isKeyPressed(Keyboard::Z)) {
         _position += Vector2f(0, -speed);
-        camera.setPosition(
-            camera.getPosition() + Vector2f(0, speed)
-        );
+        if(_position.y > -25){
+            camera.setPosition(
+                camera.getPosition() + Vector2f(0, speed)
+            );
+        } else {
+            _position = ancienne_position;
+            camera.setPosition(
+                ancienne_position_camera
+            );
+        }        
     }
     if(Keyboard::isKeyPressed(Keyboard::D)) {
         _position += Vector2f(speed, 0);
-        camera.setPosition(
-            camera.getPosition() + Vector2f(-speed, 0)
-        );
+        if(_position.x < 98 * 25) {
+            camera.setPosition(
+                camera.getPosition() + Vector2f(-speed, 0)
+            );
+        } else {
+            _position = ancienne_position;
+            camera.setPosition(
+                ancienne_position_camera
+            );
+        }
+        
     }
     if(Keyboard::isKeyPressed(Keyboard::S)) {
         _position += Vector2f(0, speed);
-        camera.setPosition(
-            camera.getPosition() + Vector2f(0, -speed)
-        );
+        if(_position.y < 98 * 25){
+            camera.setPosition(
+                camera.getPosition() + Vector2f(0, -speed)
+            );
+        } else {
+            _position = ancienne_position;
+            camera.setPosition(
+                ancienne_position_camera
+            );
+        }
     }
     if(Keyboard::isKeyPressed(Keyboard::Q)) {
         _position += Vector2f(-speed, 0);
-        camera.setPosition(
-            camera.getPosition() + Vector2f(speed, 0)
-        );
+        if(_position.x > -25) {
+            camera.setPosition(
+                camera.getPosition() + Vector2f(speed, 0)
+            );
+        } else {
+            _position = ancienne_position;  
+            camera.setPosition(
+                ancienne_position_camera
+            );          
+        }
     }
 }
 void Player::update(Camera& camera) {
