@@ -39,6 +39,7 @@ public:
     /*                   METHODS                    */
     /************************************************/
     void loadTexturesSprites();
+    void deplacement(Camera&);
     void update(Camera&);
     void draw(RenderWindow*);
 };

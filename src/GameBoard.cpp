@@ -14,9 +14,12 @@ using namespace OutilsMaths;
 /************************************************/
 GameBoard::GameBoard() {
     loadTexturesSprites();
+    loadElementMap();
     _gameGrid = GameGrid();
 }
-GameBoard::~GameBoard() {}
+GameBoard::~GameBoard() {
+    deleteAllElementMap();
+}
 /************************************************/
 /*                   OPERATORS                  */
 /************************************************/
@@ -42,27 +45,30 @@ void GameBoard::loadTexturesSprites() {
     for(int i = 0; i < NB_TILE; i++)
         _sprites[i].setTexture(_textures[i]);
 }
+void GameBoard::loadElementMap() {
+    _listeElementMap = list<ElementMap*>();
+
+    for (int i = 0; i < NB_ARBRE; i++) {
+        int x = alea_entre_bornes(50, 5000/2),
+            y = alea_entre_bornes(50, 5000/2);
+        
+        _listeElementMap.push_back(
+            new ElementMap(
+                Vector2f(x, y),
+                "../assets/element_map/arbre_entier0.png"
+            )
+        );
+    }
+}
+void GameBoard::deleteAllElementMap() {
+    _listeElementMap.remove_if([](ElementMap * e){
+        delete e;
+        return true;
+    });
+}
 void GameBoard::update(Camera& camera) {
-    int speed = 2;
-    if(Keyboard::isKeyPressed(Keyboard::Up)){
-        camera.setPosition(  
-            camera.getPosition() + Vector2f(0, -speed)
-        );
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Right)){
-        camera.setPosition(  
-            camera.getPosition() + Vector2f(speed, 0)
-        );
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Down)){
-        camera.setPosition(  
-            camera.getPosition() + Vector2f(0, speed)
-        );
-    }
-    if(Keyboard::isKeyPressed(Keyboard::Left)){
-        camera.setPosition(  
-            camera.getPosition() + Vector2f(-speed, 0)
-        );
+    for(ElementMap * e : _listeElementMap){
+        e->update(camera);
     }
 }
 void GameBoard::draw(RenderWindow * p_window, const Camera& camera) {
@@ -78,5 +84,20 @@ void GameBoard::draw(RenderWindow * p_window, const Camera& camera) {
                 p_window->draw(_sprites[_gameGrid.getId(l,c)]);
             }
         }
+    }
+    
+}
+void GameBoard::drawElementMap(RenderWindow* p_window, const Camera& camera) const {
+    for(ElementMap * e : _listeElementMap){
+        if(
+            isInScreen(
+                to3Diso(
+                    e->getPosition() + camera.getPosition()
+                )
+            )
+        ){
+            e->draw(p_window);
+        }
+            
     }
 }

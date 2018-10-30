@@ -49,8 +49,36 @@ void Player::loadTexturesSprites() {
         _sprites[i].setTexture(_textures[i]);
     }
 }
-
+void Player::deplacement(Camera& camera) {
+    int speed = 2;
+    if(Keyboard::isKeyPressed(Keyboard::Z)) {
+        _position += Vector2f(0, -speed);
+        camera.setPosition(
+            camera.getPosition() + Vector2f(0, speed)
+        );
+    }
+    if(Keyboard::isKeyPressed(Keyboard::D)) {
+        _position += Vector2f(speed, 0);
+        camera.setPosition(
+            camera.getPosition() + Vector2f(-speed, 0)
+        );
+    }
+    if(Keyboard::isKeyPressed(Keyboard::S)) {
+        _position += Vector2f(0, speed);
+        camera.setPosition(
+            camera.getPosition() + Vector2f(0, -speed)
+        );
+    }
+    if(Keyboard::isKeyPressed(Keyboard::Q)) {
+        _position += Vector2f(-speed, 0);
+        camera.setPosition(
+            camera.getPosition() + Vector2f(speed, 0)
+        );
+    }
+}
 void Player::update(Camera& camera) {
+    deplacement(camera);
+
     _sprites[_currentImage].setPosition(
         to3Diso(_position + camera.getPosition())
     );

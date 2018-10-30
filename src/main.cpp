@@ -16,11 +16,14 @@ int main(int argc, char * argv[])
     RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
     window.setFramerateLimit(60);
 
-    Camera camera = Camera();
+    Camera camera = Camera(Vector2f(380, 100));
     GameBoard myMap = GameBoard();
     Player player = Player();
 
     Clock clock;
+    Clock clockTimer;
+    Time timer;
+
     Font police;
     Text text_fps;
     if(!police.loadFromFile("../assets/polices/arial.ttf")){
@@ -34,24 +37,29 @@ int main(int argc, char * argv[])
     text_fps.setColor(Color::Red);
 
     while (window.isOpen())
-    {
+    {   
         Event event;
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
                 window.close();
         }
+        
+        timer = clockTimer.getElapsedTime();
+        // cout << (int)timer.asSeconds() << endl;
 
         int fps = (int)(1.f / clock.getElapsedTime().asSeconds());
         clock.restart();
         text_fps.setString("FPS :" + to_string(fps));
-        myMap.update(camera);
         player.update(camera);
+        myMap.update(camera);
+        
         
         window.clear();
-        window.draw(text_fps);
         myMap.draw(&window, camera);
         player.draw(&window);
+        myMap.drawElementMap(&window, camera);
+        window.draw(text_fps);
         window.display();
     }
 
