@@ -50,7 +50,7 @@ void Player::loadTexturesSprites() {
     }
 }
 void Player::deplacement(Camera& camera) {
-    int speed = 2;
+    int speed = 4;
     if(Keyboard::isKeyPressed(Keyboard::Z)) {
         _position += Vector2f(0, -speed);
         camera.setPosition(
@@ -83,7 +83,6 @@ void Player::update(Camera& camera) {
         to3Diso(_position + camera.getPosition())
     );
 }
-
 void Player::draw(RenderWindow* p_window) {
     p_window->draw(_sprites[_currentImage]);
 }
