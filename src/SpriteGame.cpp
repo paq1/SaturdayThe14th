@@ -35,6 +35,9 @@ const SpriteGame& SpriteGame::operator=(const SpriteGame& opd) {
 /************************************************/
 /*                  GETTER/SETTER               */
 /************************************************/
+SpriteGame * SpriteGame::clone() const {
+    return new SpriteGame(*this);
+}
 int SpriteGame::getNbImages() const { return _nbImages; }
 int SpriteGame::getCurrentImage() const { return _currentImage; }
 void SpriteGame::setCurrentImage(int i) { 

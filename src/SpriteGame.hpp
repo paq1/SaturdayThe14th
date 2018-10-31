@@ -40,6 +40,7 @@ public:
     /************************************************/
     /*                   METHODS                    */
     /************************************************/
+    SpriteGame * clone() const;
     void loadAll(const string&, int);
     void deleteAll();
     void draw(RenderWindow*);
