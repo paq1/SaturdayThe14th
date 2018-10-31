@@ -14,7 +14,7 @@ int main(int argc, char * argv[])
 {
     srand(time(NULL));
     RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(30);
 
     Camera camera = Camera(Vector2f(380, 100));
     GameBoard myMap = GameBoard();
@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
         int fps = (int)(1.f / clock.getElapsedTime().asSeconds());
         clock.restart();
         text_fps.setString("FPS :" + to_string(fps));
-        player.update(camera);
+        player.update(camera, timer);
         myMap.update(camera);
         
         

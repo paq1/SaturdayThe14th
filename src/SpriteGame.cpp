@@ -35,8 +35,12 @@ const SpriteGame& SpriteGame::operator=(const SpriteGame& opd) {
 /************************************************/
 /*                  GETTER/SETTER               */
 /************************************************/
+int SpriteGame::getNbImages() const { return _nbImages; }
 int SpriteGame::getCurrentImage() const { return _currentImage; }
-void SpriteGame::setCurrentImage(int i) { _currentImage = i; }
+void SpriteGame::setCurrentImage(int i) { 
+    _currentImage = i;
+    //cout << "changement image" << endl; 
+}
 void SpriteGame::setPosition( const Vector2f& position ) {
     _sprites[_currentImage].setPosition(position);
 }
@@ -56,6 +60,7 @@ void SpriteGame::loadAll(const string& nom, int nb) {
             cout << "erreur de chargement" << endl;
         }
         _sprites[i].setTexture(_textures[i]);
+        cout << "image charger" << endl;
     }
 }
 void SpriteGame::deleteAll() {

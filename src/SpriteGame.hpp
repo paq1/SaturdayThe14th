@@ -33,6 +33,7 @@ public:
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
+    int getNbImages() const;
     int getCurrentImage() const;
     void setCurrentImage(int);
     void setPosition( const Vector2f& );

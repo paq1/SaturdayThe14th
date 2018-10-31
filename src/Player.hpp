@@ -6,17 +6,23 @@
 
 #include "OutilsMaths.hpp"
 #include "Camera.hpp"
+#include "SpriteGame.hpp"
 
 using namespace OutilsMaths;
 using namespace std;
 using namespace sf;
 
+#define DIRECTION 4
+
 class Player {
 private:
     Vector2f _position;
-    Texture _textures[4];
-    Sprite _sprites[4];
+    SpriteGame _sprites[DIRECTION];
     int _currentImage;
+    
+    // animation
+    Time _oldTime; // pas besoin a initialiser
+    bool _isInit;
 public:
     /************************************************/
     /*                   CONSTANTES                 */
@@ -40,7 +46,8 @@ public:
     /************************************************/
     void loadTexturesSprites();
     void deplacement(Camera&);
-    void update(Camera&);
+    void animation(const Time&);
+    void update(Camera&, const Time&);
     void draw(RenderWindow*);
 };
 
