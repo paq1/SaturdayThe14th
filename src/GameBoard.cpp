@@ -57,8 +57,8 @@ void GameBoard::loadElementMap() {
     _listeElementMap = list<ElementMap*>();
 
     for (int i = 0; i < NB_ARBRE; i++) {
-        int x = alea_entre_bornes(50, (5000 - 100)/2),
-            y = alea_entre_bornes(50, (5000 - 100)/2);
+        int x = alea_entre_bornes(50, (5000 - 150)/2),
+            y = alea_entre_bornes(50, (5000 - 150)/2);
         
         _listeElementMap.push_back(
             new ElementMap(

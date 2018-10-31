@@ -63,7 +63,6 @@ void SpriteGame::loadAll(const string& nom, int nb) {
             cout << "erreur de chargement" << endl;
         }
         _sprites[i].setTexture(_textures[i]);
-        cout << "image charger" << endl;
     }
 }
 void SpriteGame::deleteAll() {
