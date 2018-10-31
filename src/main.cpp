@@ -13,7 +13,8 @@ using namespace sf;
 int main(int argc, char * argv[])
 {
     srand(time(NULL));
-    RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
+    string title = "Saturday the 14th";
+    RenderWindow window(sf::VideoMode(600, 600), title);
     window.setFramerateLimit(30);
 
     Camera camera = Camera(Vector2f(380, 100));
@@ -46,7 +47,6 @@ int main(int argc, char * argv[])
         }
         
         timer = clockTimer.getElapsedTime();
-        // cout << (int)timer.asSeconds() << endl;
 
         int fps = (int)(1.f / clock.getElapsedTime().asSeconds());
         clock.restart();
