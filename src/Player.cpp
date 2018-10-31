@@ -110,7 +110,7 @@ void Player::deplacement(Camera& camera) {
 }
 void Player::animation(const Time& timer) {
     if(!_isInit) {
-        _oldTime = timer + seconds(1.f);
+        _oldTime = timer + seconds(0.5f);
         _isInit = true;
     }
 
@@ -119,7 +119,7 @@ void Player::animation(const Time& timer) {
         int currentImg = _sprites[_currentImage].getCurrentImage();
         int nbImg = _sprites[_currentImage].getNbImages();
         int newCurrentImage = 0;
-        if(currentImg < nbImg - 2) {
+        if(currentImg < nbImg - 1) {
             newCurrentImage = currentImg + 1;
         }
         _sprites[_currentImage].setCurrentImage(newCurrentImage);
