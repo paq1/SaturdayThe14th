@@ -9,7 +9,7 @@
 #include "Camera.hpp"
 #include "ElementMap.hpp"
 
-#define NB_TILE 1
+#define NB_TILE 2
 #define NB_ARBRE 500
 
 using namespace std;
@@ -38,7 +38,7 @@ public:
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
-    
+    const GameGrid& getGameGrid() const;
     /************************************************/
     /*                   METHODS                    */
     /************************************************/

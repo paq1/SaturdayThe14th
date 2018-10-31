@@ -7,6 +7,7 @@
 #include "OutilsMaths.hpp"
 #include "Camera.hpp"
 #include "SpriteGame.hpp"
+#include "GameGrid.hpp"
 
 using namespace OutilsMaths;
 using namespace std;
@@ -47,7 +48,7 @@ public:
     void loadTexturesSprites();
     void deplacement(Camera&);
     void animation(const Time&);
-    void update(Camera&, const Time&);
+    void update(Camera&, const GameGrid&,const Time&);
     void draw(RenderWindow*);
 };
 

@@ -27,7 +27,9 @@ GameBoard::~GameBoard() {
 /************************************************/
 /*                  GETTER/SETTER               */
 /************************************************/
-
+const GameGrid& GameBoard::getGameGrid() const {
+    return _gameGrid;
+}
 /************************************************/
 /*                   METHODS                    */
 /************************************************/
@@ -40,6 +42,12 @@ void GameBoard::loadTexturesSprites() {
         "../assets/assets_pixel_50x50/isometric_pixel_0000.png"
     );
     if(!_textures[0].loadFromFile(dest)){
+        cout << "erreur de chargement de " << dest << endl;
+    }
+    dest = string(
+        "../assets/assets_pixel_50x50/isometric_pixel_0051.png"
+    );
+    if(!_textures[1].loadFromFile(dest)){
         cout << "erreur de chargement de " << dest << endl;
     }
     for(int i = 0; i < NB_TILE; i++)

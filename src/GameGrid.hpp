@@ -2,11 +2,14 @@
 #define _GAME_GRID_
 
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #define NB_LINE   100
 #define NB_COLUMN 100
+#define SIZE_TILE 50
 
 using namespace std;
+using namespace sf;
 
 class GameGrid {
 private:
@@ -17,6 +20,7 @@ public:
     /*                   CONSTANTES                 */
     /************************************************/
     static const int TERRE;
+    static const int PIERRE;
     /************************************************/
     /*          CONSTRUCTEUR/DESTRUCTEUR            */
     /************************************************/
@@ -37,6 +41,7 @@ public:
     /*                   METHODS                    */
     /************************************************/
     void loadGrid();
+    int getTileAt(const Vector2f&) const;
 };
 
 #endif

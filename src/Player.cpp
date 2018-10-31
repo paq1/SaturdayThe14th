@@ -125,12 +125,14 @@ void Player::animation(const Time& timer) {
         _sprites[_currentImage].setCurrentImage(newCurrentImage);
     }
 }
-void Player::update(Camera& camera, const Time& timer) {
+void Player::update(Camera& camera, const GameGrid& grid, const Time& timer) {
     deplacement(camera);
     animation(timer);
     _sprites[_currentImage].setPosition(
         to3Diso(_position + camera.getPosition())
     );
+
+    // cout << grid.getTileAt(_position) << endl;
 }
 void Player::draw(RenderWindow* p_window) {
     _sprites[_currentImage].draw(p_window);

@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
         int fps = (int)(1.f / clock.getElapsedTime().asSeconds());
         clock.restart();
         text_fps.setString("FPS :" + to_string(fps));
-        player.update(camera, timer);
+        player.update(camera, myMap.getGameGrid(),timer);
         myMap.update(camera);
         
         

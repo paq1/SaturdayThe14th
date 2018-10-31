@@ -4,6 +4,7 @@
 /*                   CONSTANTES                 */
 /************************************************/
 const int GameGrid::TERRE = 0;
+const int GameGrid::PIERRE = 1;
 /************************************************/
 /*          CONSTRUCTEUR/DESTRUCTEUR            */
 /************************************************/
@@ -44,4 +45,18 @@ void GameGrid::loadGrid() {
             setId(TERRE, l, c);
         }
     }
+    setId(PIERRE, 0, 0);
+    setId(PIERRE, 1, 1);
+    setId(PIERRE, 5, 4);
+}
+int GameGrid::getTileAt(const Vector2f& pos) const {
+    int l = pos.y / SIZE_TILE,
+        c = pos.x / SIZE_TILE;
+    int res = -1;
+
+    if((l >= 0 || l < _nbLine) && (c >= 0 || c < _nbColumn)) {
+        res = getId(l,c);
+    }
+
+    return res;
 }
