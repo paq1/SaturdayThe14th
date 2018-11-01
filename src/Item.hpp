@@ -16,6 +16,7 @@ class Item {
 private:
     SpriteGame _sprite;
     Vector2f _position;
+    bool _aSupprimer;
 public:
     /************************************************/
     /*                   CONSTANTES                 */
@@ -31,11 +32,14 @@ public:
     /************************************************/
     /*                   OPERATORS                  */
     /************************************************/
-
+    const Item& operator=(const Item&);
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
-    
+    const SpriteGame& getSpriteGame() const;
+    bool getASupprimer() const;
+    const Vector2f& getPosition() const;
+    void setPosition(const Vector2f&);
     /************************************************/
     /*                   METHODS                    */
     /************************************************/
