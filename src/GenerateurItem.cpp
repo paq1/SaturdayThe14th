@@ -29,14 +29,23 @@ GenerateurItem::~GenerateurItem() {
 /*                   METHODS                    */
 /************************************************/
 void GenerateurItem::loadItems() {
-    _listePieces.push_back(
-        new Piece(
-            "../assets/element_map/feu", 
-            3, 
-            Vector2f(200, 200), 
-            10
-        )
-    );
+    int nbPieces = NB_PIECES;
+
+    while(nbPieces > 0) {
+        int x = alea_entre_bornes(50, 25 * 98),
+            y = alea_entre_bornes(50, 25 * 98);
+
+        _listePieces.push_back(
+            new Piece(
+                "../assets/element_map/feu", 
+                3, 
+                Vector2f(x, y), 
+                10
+            )
+        );
+
+        nbPieces--;
+    } 
 }
 void GenerateurItem::deleteAllItems() {
     _listePieces.remove_if([](Item * i) {
@@ -66,7 +75,7 @@ void GenerateurItem::update(const Camera& camera, Player& player) {
         }
     });
 
-    cout << player.getArgent() << endl;
+    // cout << player.getArgent() << endl;
 }
 void GenerateurItem::draw(RenderWindow* p_window) {
     for(Piece * p : _listePieces){

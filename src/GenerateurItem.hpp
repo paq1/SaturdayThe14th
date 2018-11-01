@@ -9,6 +9,8 @@
 #include "Player.hpp"
 #include "Camera.hpp"
 
+#define NB_PIECES 100
+
 using namespace std;
 using namespace sf;
 
