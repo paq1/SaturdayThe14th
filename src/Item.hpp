@@ -38,6 +38,7 @@ public:
     /************************************************/
     const SpriteGame& getSpriteGame() const;
     bool getASupprimer() const;
+    void setASupprimer(bool);
     const Vector2f& getPosition() const;
     void setPosition(const Vector2f&);
     /************************************************/
@@ -45,7 +46,7 @@ public:
     /************************************************/
     void update(const Camera&);
     void draw(RenderWindow*);
-    virtual void agit(Player&) = 0;
+    virtual void agir(Player&) = 0;
 };
 
 #endif

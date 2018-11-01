@@ -44,6 +44,9 @@ void SpriteGame::setCurrentImage(int i) {
 void SpriteGame::setPosition( const Vector2f& position ) {
     _sprites[_currentImage].setPosition(position);
 }
+const string& SpriteGame::getNom() const {
+    return _nom;
+}
 /************************************************/
 /*                   METHODS                    */
 /************************************************/

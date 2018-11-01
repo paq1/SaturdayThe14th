@@ -1,19 +1,18 @@
-#ifndef _SPRITE_GAME_
-#define _SPRITE_GAME_
+#ifndef _PIECE_
+#define _PIECE_
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <string>
+#include <string> 
+
+#include "Item.hpp"
 
 using namespace std;
 using namespace sf;
 
-class SpriteGame {
+class Piece : public Item {
 private:
-    Texture *_textures;
-    Sprite *_sprites;
-    int _nbImages, _currentImage;
-    string _nom;
+    int _valeure;
 public:
     /************************************************/
     /*                   CONSTANTES                 */
@@ -22,29 +21,22 @@ public:
     /************************************************/
     /*          CONSTRUCTEUR/DESTRUCTEUR            */
     /************************************************/
-    SpriteGame();
-    SpriteGame(const string&, int);
-    SpriteGame(const SpriteGame&);
-    virtual ~SpriteGame();
+    Piece();
+    Piece(const string&, int, const Vector2f&, int);
+    Piece(const Piece&);
+    virtual ~Piece();
     /************************************************/
     /*                   OPERATORS                  */
     /************************************************/
-    const SpriteGame& operator=(const SpriteGame&);
+    const Piece& operator=(const Piece&);
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
-    int getNbImages() const;
-    int getCurrentImage() const;
-    void setCurrentImage(int);
-    void setPosition( const Vector2f& );
-    const string& getNom() const;
+    
     /************************************************/
     /*                   METHODS                    */
     /************************************************/
-    SpriteGame * clone() const;
-    void loadAll(const string&, int);
-    void deleteAll();
-    void draw(RenderWindow*);
+    virtual void agir(Player&);
 };
 
 #endif

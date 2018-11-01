@@ -45,6 +45,7 @@ const SpriteGame& Item::getSpriteGame() const {
     return _sprite;
 }
 bool Item::getASupprimer() const { return _aSupprimer; }
+void Item::setASupprimer(bool val) { _aSupprimer = val; }
 const Vector2f& Item::getPosition() const { return _position; }
 void Item::setPosition(const Vector2f& pos) {
     _position = pos;
