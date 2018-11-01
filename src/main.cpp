@@ -4,6 +4,7 @@
 #include <time.h>
 
 #include "GameBoard.hpp"
+#include "GenerateurItem.hpp"
 #include "Camera.hpp"
 #include "Player.hpp"
 
@@ -20,6 +21,7 @@ int main(int argc, char * argv[])
     Camera camera = Camera(Vector2f(380, 100));
     GameBoard myMap = GameBoard();
     Player player = Player();
+    GenerateurItem generateurItem = GenerateurItem();
 
     Clock clock;
     Clock clockTimer;
@@ -53,12 +55,14 @@ int main(int argc, char * argv[])
         text_fps.setString("FPS :" + to_string(fps));
         player.update(camera, myMap.getGameGrid(),timer);
         myMap.update(camera);
+        generateurItem.update(camera, player);
         
         
         window.clear();
         myMap.draw(&window, camera);
         player.draw(&window);
         myMap.drawElementMap(&window, camera);
+        generateurItem.draw(&window);
         window.draw(text_fps);
         window.display();
     }

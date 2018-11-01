@@ -45,6 +45,8 @@ const Piece& Piece::operator=(const Piece& opd) {
 /*                   METHODS                    */
 /************************************************/
 void Piece::agir(Player& player) {
-    player.setArgent(_valeure);
+    player.setArgent(
+        player.getArgent() + _valeure
+    );
     setASupprimer(true); // on peut supprimer l'item
 }

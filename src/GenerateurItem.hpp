@@ -1,58 +1,44 @@
-#ifndef _PLAYER_
-#define _PLAYER_
+#ifndef _GENERATEUR_ITEM_
+#define _GENERATEUR_ITEM_
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <list>
 
-#include "OutilsMaths.hpp"
+#include "Piece.hpp"
+#include "Player.hpp"
 #include "Camera.hpp"
-#include "SpriteGame.hpp"
-#include "GameGrid.hpp"
 
-using namespace OutilsMaths;
 using namespace std;
 using namespace sf;
 
-#define DIRECTION 4
-
-class Player {
+class GenerateurItem {
 private:
-    Vector2f _position;
-    SpriteGame _sprites[DIRECTION];
-    int _currentImage, _argent;
-    
-    // animation
-    Time _oldTime; // pas besoin a initialiser
-    bool _isInit;
+    list<Piece*> _listePieces;
 public:
     /************************************************/
     /*                   CONSTANTES                 */
     /************************************************/
-
+    GenerateurItem();
+    virtual ~GenerateurItem();
     /************************************************/
     /*          CONSTRUCTEUR/DESTRUCTEUR            */
     /************************************************/
-    Player();
-    virtual ~Player();
+    
     /************************************************/
     /*                   OPERATORS                  */
     /************************************************/
-
+    
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
-    int getArgent() const;
-    void setArgent(int);
-    const Vector2f& getPosition() const {
-        return _position;
-    }
+    
     /************************************************/
     /*                   METHODS                    */
     /************************************************/
-    void loadTexturesSprites();
-    void deplacement(Camera&);
-    void animation(const Time&);
-    void update(Camera&, const GameGrid&,const Time&);
+    void loadItems();
+    void deleteAllItems();
+    void update(const Camera&, Player&);
     void draw(RenderWindow*);
 };
 
