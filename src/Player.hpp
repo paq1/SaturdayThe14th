@@ -19,7 +19,7 @@ class Player {
 private:
     Vector2f _position;
     SpriteGame _sprites[DIRECTION];
-    int _currentImage;
+    int _currentImage, _argent;
     
     // animation
     Time _oldTime; // pas besoin a initialiser
@@ -41,7 +41,8 @@ public:
     /************************************************/
     /*                  GETTER/SETTER               */
     /************************************************/
-    
+    int getArgent() const;
+    void setArgent(int);
     /************************************************/
     /*                   METHODS                    */
     /************************************************/

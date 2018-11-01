@@ -11,6 +11,7 @@ Player::Player() {
     loadTexturesSprites();
     _currentImage = 0;
     _position = Vector2f(50,50);
+    _argent = 0;
 
     // animation
     _isInit = false;
@@ -23,7 +24,8 @@ Player::~Player() {}
 /************************************************/
 /*                  GETTER/SETTER               */
 /************************************************/
-
+int Player::getArgent() const { return _argent; }
+void Player::setArgent(int val) { _argent = val; }
 /************************************************/
 /*                   METHODS                    */
 /************************************************/
