@@ -60,9 +60,9 @@ int main(int argc, char * argv[])
         
         window.clear();
         myMap.draw(&window, camera);
+        generateurItem.draw(&window);
         player.draw(&window);
         myMap.drawElementMap(&window, camera);
-        generateurItem.draw(&window);
         window.draw(text_fps);
         window.display();
     }
